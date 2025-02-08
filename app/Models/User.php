@@ -55,4 +55,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(EtsyCredential::class);
     }
+
+    public function twitterCredential()
+    {
+        return $this->hasOne(TwitterCredential::class);
+    }
 }

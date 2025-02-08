@@ -27,6 +27,8 @@ Route::middleware('auth')->group(function () {
         ->name('etsy.auth.redirect');
     Route::get('/etsy/auth/callback', [ApiIntegrationController::class, 'handleEtsyCallback'])
         ->name('etsy.auth.callback');
+    Route::post('/twitter/credentials', [ApiIntegrationController::class, 'storeTwitter'])
+        ->name('twitter.credentials.store');
 });
 
 require __DIR__.'/auth.php';

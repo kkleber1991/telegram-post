@@ -83,6 +83,69 @@
                     </section>
                 </div>
             </div>
+
+            <!-- Twitter Credentials -->
+            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                <div class="max-w-xl">
+                    <section>
+                        <header>
+                            <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                                {{ __('Twitter API Credentials') }}
+                            </h2>
+                            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                {{ __('Update your Twitter (X) API credentials.') }}
+                            </p>
+                        </header>
+
+                        <form method="post" action="{{ route('twitter.credentials.store') }}" class="mt-6 space-y-6">
+                            @csrf
+                            
+                            <div>
+                                <x-input-label for="api_key" value="API Key" />
+                                <x-text-input id="api_key" name="api_key" type="text" class="mt-1 block w-full"
+                                    :value="old('api_key', $twitterCredential?->api_key)" required />
+                                <x-input-error class="mt-2" :messages="$errors->get('api_key')" />
+                            </div>
+
+                            <div>
+                                <x-input-label for="api_key_secret" value="API Key Secret" />
+                                <x-text-input id="api_key_secret" name="api_key_secret" type="password" class="mt-1 block w-full"
+                                    :value="old('api_key_secret', $twitterCredential?->api_key_secret)" required />
+                                <x-input-error class="mt-2" :messages="$errors->get('api_key_secret')" />
+                            </div>
+
+                            <div>
+                                <x-input-label for="bearer_token" value="Bearer Token" />
+                                <x-text-input id="bearer_token" name="bearer_token" type="password" class="mt-1 block w-full"
+                                    :value="old('bearer_token', $twitterCredential?->bearer_token)" required />
+                                <x-input-error class="mt-2" :messages="$errors->get('bearer_token')" />
+                            </div>
+
+                            <div>
+                                <x-input-label for="access_token" value="Access Token (OAuth 1.0a)" />
+                                <x-text-input id="access_token" name="access_token" type="password" class="mt-1 block w-full"
+                                    :value="old('access_token', $twitterCredential?->access_token)" />
+                                <x-input-error class="mt-2" :messages="$errors->get('access_token')" />
+                            </div>
+
+                            <div>
+                                <x-input-label for="access_token_secret" value="Access Token Secret" />
+                                <x-text-input id="access_token_secret" name="access_token_secret" type="password" class="mt-1 block w-full"
+                                    :value="old('access_token_secret', $twitterCredential?->access_token_secret)" />
+                                <x-input-error class="mt-2" :messages="$errors->get('access_token_secret')" />
+                            </div>
+
+                            <div class="flex items-center gap-4">
+                                <x-primary-button>{{ __('Save') }}</x-primary-button>
+
+                                @if($twitterCredential?->access_token)
+                                    <p class="text-sm text-green-600 dark:text-green-400">{{ __('Connected') }}</p>
+                                @endif
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </div>
         </div>
     </div>
 </x-app-layout> 
